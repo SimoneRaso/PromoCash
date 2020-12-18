@@ -1,0 +1,95 @@
+Return-Path: <datastore@libero.it>
+Delivered-To: datastore@libero.it
+Received: from dcd-14 ([10.103.10.33])
+	by dcbackend-04.iol.local with LMTP id QENrAtsZoltjLgQABAqMmQ
+	for <datastore@libero.it>; Wed, 19 Sep 2018 11:41:47 +0200
+Received: from dcp-22.iol.local ([10.103.10.33])
+	by dcd-14 with LMTP id 2LRNAtsZoluFYwAACWh6zQ
+	; Wed, 19 Sep 2018 11:41:47 +0200
+Received: from libero.it ([10.103.10.33])
+	by dcp-22.iol.local with LMTP id QHNoFs4ZolvwRQAAhl33TQ
+	; Wed, 19 Sep 2018 11:41:47 +0200
+Received: from cozzo ([130.25.74.216])
+	by smtp-33.iol.local with ESMTPA
+	id 2YzSgCCmpQGOz2YzSgS0Is; Wed, 19 Sep 2018 11:41:46 +0200
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2014;
+	t=1537350107; bh=fBO32ksr15IraC9ujMQ03jdHY9VAitEgV/iDKCPceRE=;
+	h=Reply-To:From:To:References:In-Reply-To:Subject:Date;
+	b=GMUJQ9gR05HFkWD9g5RHOPikHqo9N2MKYU2rhdXJwi3rek+ScMCuF6VCBc7ckbIJ/
+	 q+zjYPc1XiLL0/BTmGNQYHlfaoRcHLhPSRZ7Hg5TPSBRg9pII/soNFqblXmVt8TRvN
+	 NE+Z1HnLIGQEl6P4C41bYAkHauF8S+xnuBwYy5ReKoj7GjetiGN1ytVOPeGsi5xQrn
+	 4up39H4EdxtgkofjHALWeuRMcDUjw6pBXuFeX50nCVNN6kitB/KvGIZ2k/MZNvSMur
+	 ir+4E8RF1esmGiwjbguaURHG/qlLEPtDWSB3utFwLu3bv77tXSUN+NHN1REsDgFEOD
+	 jo6irXVudba5g==
+X-CNFS-Analysis: v=2.3 cv=OvCeNB3t c=1 sm=1 tr=0
+ a=BZma6IWfJHeyv2dHvgcYGA==:117 a=BZma6IWfJHeyv2dHvgcYGA==:17
+ a=IkcTkHD0fZMA:10 a=Dlr92Pw7AAAA:8 a=qT6CgzWcn9265zTZVLsA:9 a=QEXdDO2ut3YA:10
+ a=g6PgBGTP0RcA:10 a=fxd35LhaGyTAeTsztXiB:22
+Message-ID: <783F9CE541964C98BCD7ABE80B569C79@cozzo>
+Reply-To: "Datastore" <datastore@libero.it>
+From: "Datastore" <datastore@libero.it>
+To: <datastore@libero.it>
+References: <6F6568481BD447DA9AD9A01AC64687D2@cozzo> <DDAB8C49-7858-401A-B9D5-3EE0F89BC473@telecash.it>
+In-Reply-To: <DDAB8C49-7858-401A-B9D5-3EE0F89BC473@telecash.it>
+Subject: Re: Sito da pubblicare (affiancato a quello esistente)
+Date: Wed, 19 Sep 2018 11:41:47 +0200
+MIME-Version: 1.0
+Content-Type: text/plain;
+	format=flowed;
+	charset="UTF-8";
+	reply-type=original
+Content-Transfer-Encoding: 8bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+Importance: Normal
+X-Mailer: Microsoft Windows Live Mail 16.4.3528.331
+X-MimeOLE: Produced By Microsoft MimeOLE V16.4.3528.331
+X-CMAE-Envelope: MS4wfIMcE5VC/BVcoULRDXktzbHCZwarDzzLozMAxd2yWb86UcfW3L6qj72Tg1IjlBwp7Kb8/f+/rFm4+1NiQ+MUWFQBGIvOmiYyka0Ji/yJsgTxgLjU8LTn
+ tFAES4khf9ACMbK3abV77+yQc1132ZQJ8oPzC4JosMDtMY+ijisEyliz
+
+Accessi server coupon .
+
+Buongiorno , ho attivato due domini per le due applicazioni in essere
+
+Per l’accesso e’ attivo un FTP con SSL ( per evitare che le passowrd passino 
+in chiaro su Internet )
+per cortesia verifica bene che il tuo client FTP supporti SSL .
+
+1) Questo e’ dedicato alla versione per Coupon Standard che Vitaliano ti ha 
+richiesto
+per iniziare a fare lavori .
+Ho gia’ creato un dbase mysql , nome db coupon con i dati del precedente
+( se ti serve modificarlo sentiamoci )
+
+coupon.tcserver.it ip 5.144.175.124
+Accessi FTP con SSL - Stesse credenziali mysql
+username:  coupon
+password:        a3fdsgjhS8!
+Cartella WEB : /public_html
+Questo e’ dedicato alla versione per Coupon Standard che Vitaliano ti ha 
+richiesto
+per iniziare a fare lavori .
+
+2) Questo e’ dedicato alla versione per Coupon custom in via di sviluppo 
+che una volta terminato
+si spostera’ nel sito principale che e’ custom.tcserver.it .
+In questo c’e’ gia’ un db , nome couponcustom
+
+couponcustom.tcserver.it 5.144.175.124
+Accessi FTP con SSL  - Stesse credenziali mysql
+username:  couponcustom
+password: a3fdsgjhS8!
+Cartella WEB : /public_html
+
+A disposizione per qualunque chiarimento
+
+Cordiali Saluti
+
+Ing.Massimo Lambertini
+Securty Manager
+----------------------------------
+Cell. +39 340 5092526
+e-mail: m.lambertini@telecash.it
+www.telecash.it
+

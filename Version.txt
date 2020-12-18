@@ -1,0 +1,32 @@
+##############################################################################################
+##									Promocash												##
+##																							##
+##						Gestione coupon standard e custom									##
+##																							##
+## Creato per:		Telecash srl															##
+##																							##
+## Creato da:		Datastore snc - Via Nazionale 305 Sestri Levante(GE)					##
+##																							##
+## Sviluppatore:	Raso Simone																##
+##############################################################################################
+
+Cronologia rilasci:
+1.0.0.0			First Release
+1.0.0.1			Aggiunto country anche nel "da Cli" che si muove all'unisono con il country "da File
+1.0.1.0			Modificata gestione delle DELETE su database che ora, sfruttando un nuovo campo status nelle tabelle retailers e users, non cancellano piu i dati ma modificano il campo. La modifica coinvolge le CommonPHPFuncion.php retailer_panel.php e admin_panel.php
+1.0.1.1			Corretto posizionamento laterale di username e password in login.php
+1.0.2.0			Inserito switch $only_standard_coupon in CommonPHPFunction ed implementato codice per gestione versioni solo standard/standard+custom
+1.0.3.0			cod_coupon composto da cli+data+ora; coupon_consumati.php aggiunto filtro nome coupon
+1.0.4.0			risolto baco in queue_status.php che visualizzava SEMPRE tutta la coda, anche degli altri utenti;CouponFunction.php coupon_code viene ora calcolato in modo diverso a seconda che sia un coupon telefonico o web
+1.0.5.0			Inseriti nuovi campi error_description ed error_message nella tabella DB coupon_queue e gestita la visualizzazione (queue_status.php) ed aggiornamento (coupon_worker.php); coupon.php gestita mancata immissione benefit e ignora se salva file; coupon.php gestiti nuovi type della chiamata API return_cli (5,6,7,8,9)
+1.0.6.0                 Risolti problemi nello stile del div_NewCouponCustom_Data che andava oltre lo spazio visibile; Implementato caricamento di una black-list da file su coupon presi da File. Creata nuova funzione LoadCLIFIle che accorpa codice simile durante la lettura di un file utente (GetCouponCli). Risolti alcune inesattezze nelle logWrite con variabili non esistenti.
+1.0.6.1			Gestito il vincolo di integrità univoca dato dei campi (Coupon_code + Merchant_code + Phone_service + Coupon_channel) durante operazioni di creazione nuovo coupon.
+1.0.7.0                 Inserito nuova query (10) "<option value="10">CLI che hanno eseguito almeno una transazione telefonica a buon fine (OK).</option>" in coupon.php";
+1.0.8.0                 Inserito nuova query (11) "<option value="11">CLI che hanno eseguito almeno una transazione PAYPAL nel nel periodo di ricerca indicato.";
+1.0.9.0                 Inserito nuova query (12) "<option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo di ricerca indicato.";
+1.0.9.1                 Inseriti nuovi prefissi consentiti (353,375,376,379);gestito log eccezione su scrittura file cli;modificato nome file di download con data e ora;
+1.0.9.2                 Eliminati il files di Cli obsoleti creati da salva_su_file;
+1.1.0.0                 Inseriti coupon unlimited, modifica che ha coinvolto i files:coupon.php,elenco_coupon.php,couponfunctions.php,coupon_worker.php,queue_status.php e modificato il db (aggiunto unlimited a coupon_queue);Inserito nuova query (13) "<option value="13">CLI che non hanno mai eseguito una transazione web nel periodo di ricerca"; Gestito Coupon Type=4 (Sconto in percentuale)
+1.2.0.0                 Gestito nuovo errore con codice -44 in ApiFetch.php come da specifiche API 4.1; Inserito bottone su elenco_coupon.php per download file di cli associati ai coupon custom (salva_su_file_CLI_coupon_custom);
+1.2.1.0                 Inserita possibilità di multiselezione (tasto shift o disegno rettangolo) su black-list utente caricata da file; 
+1.2.2.0                 Aggiunto only_export_cli alla colonna users per gestire una nuova tipologia di utente; modificato couupon.php,retailer_panel.php,CommonPHPfunction per la gestione del nuovo tipo di utente; Creata e gestita nuova pagina statistichecoupon.php

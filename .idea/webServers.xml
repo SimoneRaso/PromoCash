@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="fdff5e50-abeb-4639-8bdf-2571c02ba697" name="prova" url="http://localhost/PromoCash">
+        <fileTransfer port="0" mountedRoot="C:\xampp\htdocs\PromoCash" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
