@@ -498,22 +498,38 @@
                                 </select>
                                 <label><input type="checkbox" id="chkTuttiMerchant_mf" name="chkTuttiMerchant_mf" value="Tutti" onchange="onchkTutti_mf(this);">Tutti</label>
                                 <br class="clear">
-                                <select id="selectTypeOfCli_mf" name="selectTypeOfCli_mf" onchange="onselectTypeOfCli_mfChange(this);">
-                                        <option value="0">CLI che NON hanno eseguito nessuna transazione</option>
-                                        <option value="1">CLI che hanno fatto una qualsiasi transazione OK(OK)</option>
-                                        <option value="2">CLI che hanno eseguito almeno una transazione a NON a buon fine (KO)</option>
-                                        <option value="3">CLI che hanno usufruito di una qualsiasi promozione</option>
-                                        <option value="4">CLI che hanno eseguito una qualsiasi transazione (OK-KO)</option>
-                                        <option value="5">CLI che non hanno transato negli ultimi 30 giorni, ma che hanno fatto almento una transazione (o piu') nei 2 mesi precedenti.</option>
-                                        <option value="6">CLI che hanno fatto transazioni Paypal, per generare promozioni con coupon Paypal</option>
-                                        <option value="7">CLI classificati come TOP 12, lista dei CLI che hanno transato almeno 20EU negli ultimi 3 mesi.</option>
-                                        <option value="8">CLI che al 15 del mese hanno transato meno della loro media riferita ai 2 mesi precedenti </option>
-                                        <option value="9">CLI che hanno transato negli ultimi 30 giorni, ma che non hanno fatto almeno una transazione (o piu') nei 2 mesi precedenti.</option>
-                                        <option value="10">CLI che hanno eseguito almeno una transazione telefonica a buon fine (OK).</option>
-                                        <option value="11">CLI che hanno eseguito almeno una transazione PAYPAL nel periodo di ricerca indicato.</option>
-                                        <option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo di ricerca indicato.</option>
-                                        <option value="13">CLI che non hanno mai eseguito una transazione web nel periodo di ricerca</option>
-                                </select>
+                                
+                                <?php
+                                if (!is_true($_SESSION['user']['only_export_cli'])){
+                                    echo'<select id="selectTypeOfCli_mf" name="selectTypeOfCli_mf" onchange="onselectTypeOfCli_mfChange(this);">';
+                                    echo'   <option value="0">CLI che NON hanno eseguito nessuna transazione</option>';
+                                    echo'   <option value="1">CLI che hanno fatto una qualsiasi transazione OK(OK)</option>';
+                                    echo'   <option value="2">CLI che hanno eseguito almeno una transazione a NON a buon fine (KO)</option>';
+                                    echo'   <option value="3">CLI che hanno usufruito di una qualsiasi promozione</option>';
+                                    echo'   <option value="4">CLI che hanno eseguito una qualsiasi transazione (OK-KO)</option>';
+                                    echo'   <option value="5">CLI che non hanno transato negli ultimi 30 giorni, ma che hanno fatto almento una transazione (o più) nei 2 mesi precedenti.</option>';
+                                    echo'   <option value="6">CLI che hanno fatto transazioni Paypal, per generare promozioni con coupon Paypal</option>';
+                                    echo'   <option value="7">CLI classificati come TOP 12, lista dei CLI che hanno transato almeno 20EU negli ultimi 3 mesi.</option>';
+                                    echo'   <option value="8">CLI che al 15 del mese hanno transato meno della loro media riferita ai 2 mesi precedenti </option>';
+                                    echo'   <option value="9">CLI che hanno transato negli ultimi 30 giorni, ma che non hanno fatto almeno una transazione (o più) nei 2 mesi precedenti.</option>';
+                                    echo'   <option value="10">CLI che hanno eseguito almeno una transazione telefonica a buon fine (OK).</option>';
+                                    echo'   <option value="11">CLI che hanno eseguito almeno una transazione PAYPAL nel periodo di ricerca indicato.</option>';
+                                    echo'   <option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo di ricerca indicato.</option>';
+                                    echo'   <option value="13">CLI che non hanno mai eseguito una transazione web nel periodo di ricerca</option>';
+                                    echo'</select>';
+                                }
+                                else {
+                                    echo'<select id="selectTypeOfCli_mf" name="selectTypeOfCli_mf" onchange="onselectTypeOfCli_mfChange(this);">';
+                                    echo'   <option value="0">CLI chiamanti che non hanno transato</option>';
+                                    echo'   <option value="1">CLI che hanno eseguito transazioni OK</option>';
+                                    echo'   <option value="3">CLI che hanno eseguito FREEPROMO</option>';
+                                    echo'   <option value="4">CLI che hanno eseguito transazioni OK E KO</option>';
+                                    echo'   <option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo</option>';
+                                    echo'   <option value="13"> CLI che non hanno eseguito transazioni web nel periodo</option>';
+                                    echo'</select>';
+                                }
+                                ?>
+                             
                                 <br class="clear">
                                 <label id="lbl_chkFiltroDate_mf">
                                         <input type="checkbox" id="chkFiltroDate_mf" name="chkFiltroDate_mf" value="DateFilter"	onchange="onChkFiltroDate_mf(this);" >
@@ -532,22 +548,38 @@
                                         Match (la 1° - la 2°)
                                 </label>
                                 <fieldset id=fld_Match_mf style="visibility: hidden;">
-                                        <select id="selectTypeOfCliMatch_mf" name="selectTypeOfCliMatch_mf">
-                                                <option value="0">CLI che NON hanno eseguito nessuna transazione</option>
-                                                <option value="1">CLI che hanno fatto una qualsiasi transazione OK(OK)</option>
-                                                <option value="2">CLI che hanno eseguito almeno una transazione a NON a buon fine (KO)</option>
-                                                <option value="3">CLI che hanno usufruito di una qualsiasi promozione</option>
-                                                <option value="4">CLI che hanno eseguito una qualsiasi transazione (OK-KO)</option>
-                                                <option value="5">CLI che non hanno transato negli ultimi 30 giorni, ma che hanno fatto almento una transazione (o piu') nei 2 mesi precedenti.</option>
-                                                <option value="6">CLI che hanno fatto transazioni Paypal, per generare promozioni con coupon Paypal</option>
-                                                <option value="7">CLI classificati come TOP 12, lista dei CLI che hanno transato almeno 20EU negli ultimi 3 mesi.</option>
-                                                <option value="8">CLI che al 15 del mese hanno transato meno della loro media riferita ai 2 mesi precedenti </option>
-                                                <option value="9">CLI che hanno transato negli ultimi 30 giorni, ma che non hanno fatto almeno una transazione (o piu') nei 2 mesi precedenti.</option>
-                                                <option value="10">CLI che hanno eseguito almeno una transazione telefonica a buon fine (OK).</option>
-                                                <option value="11">CLI che hanno eseguito almeno una transazione PAYPAL nel nel periodo di ricerca indicato.</option>
-                                                <option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo di ricerca indicato.</option>
-                                                <option value="13">CLI che non hanno mai eseguito una transazione web nel periodo di ricerca</option>
-                                        </select>
+                                    
+                                        <?php
+                                        if (!is_true($_SESSION['user']['only_export_cli'])){
+                                            echo'<select id="selectTypeOfCliMatch_mf" name="selectTypeOfCliMatch_mf">';
+                                            echo'   <option value="0">CLI che NON hanno eseguito nessuna transazione</option>';
+                                            echo'   <option value="1">CLI che hanno fatto una qualsiasi transazione OK(OK)</option>';
+                                            echo'   <option value="2">CLI che hanno eseguito almeno una transazione a NON a buon fine (KO)</option>';
+                                            echo'   <option value="3">CLI che hanno usufruito di una qualsiasi promozione</option>';
+                                            echo'   <option value="4">CLI che hanno eseguito una qualsiasi transazione (OK-KO)</option>';
+                                            echo'   <option value="5">CLI che non hanno transato negli ultimi 30 giorni, ma che hanno fatto almento una transazione (o più) nei 2 mesi precedenti.</option>';
+                                            echo'   <option value="6">CLI che hanno fatto transazioni Paypal, per generare promozioni con coupon Paypal</option>';
+                                            echo'   <option value="7">CLI classificati come TOP 12, lista dei CLI che hanno transato almeno 20EU negli ultimi 3 mesi.</option>';
+                                            echo'   <option value="8">CLI che al 15 del mese hanno transato meno della loro media riferita ai 2 mesi precedenti </option>';
+                                            echo'   <option value="9">CLI che hanno transato negli ultimi 30 giorni, ma che non hanno fatto almeno una transazione (o più) nei 2 mesi precedenti.</option>';
+                                            echo'   <option value="10">CLI che hanno eseguito almeno una transazione telefonica a buon fine (OK).</option>';
+                                            echo'   <option value="11">CLI che hanno eseguito almeno una transazione PAYPAL nel periodo di ricerca indicato.</option>';
+                                            echo'   <option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo di ricerca indicato.</option>';
+                                            echo'   <option value="13">CLI che non hanno mai eseguito una transazione web nel periodo di ricerca</option>';
+                                            echo'</select>';
+                                        }
+                                        else {
+                                            echo'<select id="selectTypeOfCliMatch_mf" name="selectTypeOfCliMatch_mf">';
+                                            echo'   <option value="0">CLI chiamanti che non hanno transato</option>';
+                                            echo'   <option value="1">CLI che hanno eseguito transazioni OK</option>';
+                                            echo'   <option value="3">CLI che hanno eseguito FREEPROMO</option>';
+                                            echo'   <option value="4">CLI che hanno eseguito transazioni OK E KO</option>';
+                                            echo'   <option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo</option>';
+                                            echo'   <option value="13"> CLI che non hanno eseguito transazioni web nel periodo</option>';
+                                            echo'</select>';
+                                        }
+                                        ?>
+                                    
                                         <br>
                                         <label>Dal: </label>
                                         <input type="date" id="dal_data_filtro2_mf" name="dal_data_filtro2_mf">
