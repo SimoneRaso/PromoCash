@@ -30,3 +30,4 @@ Cronologia rilasci:
 1.2.0.0                 Gestito nuovo errore con codice -44 in ApiFetch.php come da specifiche API 4.1; Inserito bottone su elenco_coupon.php per download file di cli associati ai coupon custom (salva_su_file_CLI_coupon_custom);
 1.2.1.0                 Inserita possibilità di multiselezione (tasto shift o disegno rettangolo) su black-list utente caricata da file; 
 1.2.2.0                 Aggiunto only_export_cli alla colonna users per gestire una nuova tipologia di utente; modificato couupon.php,retailer_panel.php,CommonPHPfunction per la gestione del nuovo tipo di utente; Creata e gestita nuova pagina statistichecoupon.php
+1.2.2.1                 Modifica (gestita in PHP tramite la funzione EchoSelectOption in UserPHPFunctions) a selectTypeOfCli_mf e selectTypeOfCliMatch_mf che ora visualizza contenuti diversi per i clienti Standard+ListeCli
