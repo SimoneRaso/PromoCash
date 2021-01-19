@@ -51,10 +51,16 @@
 						&nbsp;
 						<a href="coupon.php"> + Coupon</a>
 						&nbsp;
-						<a href="couponconsumati.php"> + Coupon Consumati</a>
-						&nbsp;
-                                                <a href="statistichecoupon.php"> + Statistiche coupon</a>
-						&nbsp;
+                                                
+                                                <?php   
+                                                if (!is_true($_SESSION['user']['only_export_cli'])){
+                                                    echo '<a href="couponconsumati.php"> + Coupon Consumati</a>';
+                                                    echo '&nbsp;';
+                                                    echo '<a href="statistichecoupon.php"> + Statistiche coupon</a>';
+                                                    echo '&nbsp;';
+                                                }
+                                                ?>
+                                                
 						<script>
 						if(<?php var_export($is_sandbox); ?>)
 							document.write('<a href="consumacoupon.php"> + Consuma Coupon (solo per Custom)</a>');
