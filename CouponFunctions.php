@@ -701,7 +701,7 @@ function ResetCoupon($username, $password, $coupon_code, $merchant_code, $phone_
     return true;
 }
 
-class ResetCoupon {
+class Finded_Coupon {
 
     public $Coupon_ID;
     public $Coupon_code;
