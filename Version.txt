@@ -32,3 +32,5 @@ Cronologia rilasci:
 1.2.2.0                 Aggiunto only_export_cli alla colonna users per gestire una nuova tipologia di utente; modificato couupon.php,retailer_panel.php,CommonPHPfunction per la gestione del nuovo tipo di utente; Creata e gestita nuova pagina statistichecoupon.php
 1.2.2.1                 Modifica (gestita in PHP tramite la funzione EchoSelectOption in UserPHPFunctions) a selectTypeOfCli_mf e selectTypeOfCliMatch_mf che ora visualizza contenuti diversi per i clienti Standard+ListeCli.
 1.2.2.2                 Modificate descrizioni delle query
+1.2.2.3                 Inibiti link + Coupon Consumati + Statistiche coupon dalla home utente per gli only_export_cli
+1.2.2.4                 Risolto bug sulla classe Finded_Coupon in CouponFunction.php che aveva cambiato nome a causa di un copia-incolla errato
