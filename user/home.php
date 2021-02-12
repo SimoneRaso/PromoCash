@@ -49,7 +49,14 @@
 						<br>
 						<a href="../index.php?logout='1'" style="color: red;">logout</a>
 						&nbsp;
-						<a href="coupon.php"> + Coupon</a>
+
+                                                <?php
+                                              	if (!is_true($_SESSION['user']['only_export_cli']))
+                                                    echo '<a href="coupon.php"> + Coupon</a>';
+                                                else
+                                                    echo '<a href="coupon.php"> + Coupon / File CLI</a>';
+                                                ?>
+
 						&nbsp;
                                                 
                                                 <?php   
