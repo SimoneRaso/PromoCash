@@ -198,3 +198,36 @@ function filter_callback($element) {
     }
     return FALSE;
 }
+
+function EchoSelectOption($id,$name,$onChangeEvnt)
+{
+    if (!is_true($_SESSION['user']['only_export_cli'])){
+        echo"<select id=$id name=$name onchange=$onChangeEvnt>";
+        echo'   <option value="0">CLI chiamanti che non hanno transato</option>';
+        echo'   <option value="1">CLI che hanno eseguito transazioni OK telefoniche e web</option>';
+        echo'   <option value="2">CLI che hanno eseguito transazioni KO</option>';
+        echo'   <option value="3">CLI che hanno eseguito FREEPROMO</option>';
+        echo'   <option value="4">CLI che hanno eseguito transazioni OK e/o KO</option>';
+        echo'   <option value="5">CLI che non hanno transato negli ultimi 30 giorni, ma lo hanno fatto nei 2 mesi precedenti</option>';
+        echo'   <option value="6">CLI che che hanno fatto transazioni Paypal</option>';
+        echo'   <option value="7">CLI TOP 12 che hanno transato almeno 20 EURO negli ultimi 3 mesi</option>';
+        echo'   <option value="8">CLI che al 15 del mese hanno transato meno della loro media riferita ai 2 mesi precedenti </option>';
+        echo'   <option value="9">CLI che hanno transato negli ultimi 30 giorni, ma non nei 2 mesi precedenti</option>';
+        echo'   <option value="10">CLI che hanno eseguito transazioni telefoniche OK</option>';
+        echo'   <option value="11">CLI che hanno eseguito transazioni PAYPAL</option>';
+        echo'   <option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo</option>';
+        echo'   <option value="13">CLI che non hanno eseguito transazioni OK web</option>';
+        echo'</select>';
+    }
+    else {
+        echo"<select id=$id name=$name onchange=$onChangeEvnt>";
+        echo'   <option value="0">CLI chiamanti che non hanno transato</option>';
+        echo'   <option value="1">CLI che hanno eseguito transazioni OK</option>';
+        echo'   <option value="3">CLI che hanno eseguito FREEPROMO</option>';
+        echo'   <option value="4">CLI che hanno eseguito transazioni OK E KO</option>';
+        echo'   <option value="12">CLI che hanno eseguito la prima transazione a pagamento nel periodo</option>';
+        echo'   <option value="13"> CLI che non hanno eseguito transazioni web nel periodo</option>';
+        echo'</select>';
+    }
+    
+}

@@ -7,6 +7,7 @@ $ResultCode="";
 $CodeDescription="";
 $MessageError="";
 $debug_worker=1;
+$verbose_log=0;
 
 /*
 			Campo status tabella coupon_queue
@@ -41,7 +42,8 @@ $debug_worker=1;
 
 	if ($tupla == FALSE)
 	{
-		WorkerLogWrite("info","Nessuna riga da processare!");
+                if ( $verbose_log == 1 )
+                    WorkerLogWrite("info","Nessuna riga da processare!");
 		die();
 	}
 

@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="../moment.js"></script>
 	<script src="../jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="../CommonScriptFunctions.js"></script>
+        <script src="../tablefilter/tablefilter.js"></script>
         
 	<?php
 	include('../CommonPHPFunctions.php');
@@ -574,10 +575,10 @@
 			} 
 			if($ElencoCouponCustom==true){?>
 		<div id="divElenco_Coupon_Custom" >
-			<table id="tbElencoCouponCustom" border='1'>
+
+			<table id="tbElencoCouponCustom" border='1'">
 				<thead>
-					<tr>
-						<th style="display: none">Coupon_ID</th>
+                                        <tr>
 						<th>Coupon_code</th>
 						<th>Coupon_type</th>
 						<th>Coupon_value</th>
@@ -590,6 +591,7 @@
                                                 <th>Unlimited</th>
 						<th>Modify</th>
 						<th>Delete</th>
+						<th style="display: none">Coupon_ID</th>
 					</tr>
 				</thead>
 				<tbody>	
@@ -600,7 +602,6 @@
 					foreach($sxml_Coupon->Coupon as $Coupon) :
                                             if($Coupon->Coupon_custom!=0){?>
 					<tr>
-					<td style="display: none"><?php echo $Coupon->Coupon_ID; ?></td>
 					<td><?php echo $Coupon->Coupon_code; ?></td>
 					<td><?php echo $Coupon->Coupon_type; ?></td>
                                         <td><?php echo $Coupon->Coupon_value; ?></td>
@@ -610,7 +611,8 @@
 					<td><?php echo $Coupon->Phone_service; ?></td>
 					<td><?php echo $Coupon->Start; ?></td>
 					<td><?php echo $Coupon->Stop; ?></td>
-                                        <td><?php echo $Coupon->Unlimited; ?></td>                                        
+                                        <td><?php echo $Coupon->Unlimited ? 'false' : 'true';?></td>                                        
+					<td style="display: none"><?php echo $Coupon->Coupon_ID; ?></td>
 					<td>
 						<button type="button" onclick='switchNewCouponToModify(<?php echo json_encode($Coupon); ?>);'>
 								MODIFY</button>
@@ -622,10 +624,30 @@
                                             }
 					endforeach; 
                                 }?>
+
 				</tbody>
 			</table>
+                        <script>
+                        //TableFilter configuration
+                        var filtersConfig = {
+                          // instruct TableFilter location to import ressources from
+                          col_1: 'none',
+                          col_4: 'select',
+                          col_5: 'select',
+                          col_6: 'select',
+                          col_9: 'select',
+                          col_10: 'none',
+                          col_11: 'none',
+                          col_12: 'none'
+                        };
+
+                        var tf = new TableFilter('tbElencoCouponCustom', filtersConfig);
+                        tf.init();
+                        </script>
 			<h4>Totale Coupon Custom:<?php echo $countCustom ?>
-                        <input type='button' value='Salva su File Cli Custom' onclick='salvaSuFileCLICouponCustom()'>
+                        <input type='button' value='Salva su File TUTTI i Cli Custom' onclick='salvaSuFileCLICouponCustom()'>
+                        <input type='button' value='Salva su File SOLO Cli Custom Selezionati' onclick='salvaSuFileCLICouponCustomSelezionati()'>
+                        
                         </h4>
 		</div>	<!--divElenco_Coupon_Custom-->	
 	</form>
@@ -639,45 +661,72 @@
 		echo '<input type=\'button\' value=\'Elimina Tutti I Coupon\' onclick=\'goToDeleteAll()\'>';
 	endif;	
 	?>
-	<script>
-		function goToDeleteStandard()
-		{
-                    var r = confirm("Sei sicuro di voler eliminare TUTTI i coupon STANDARD?");
-                    if (r == true) 
-        		window.location='elenco_coupon.php?action=elimina_tutti_coupon_standard';
-		}
-                function goToDeleteCustom()
-		{
-                    var r = confirm("Sei sicuro di voler eliminare TUTTI i coupon CUSTOM?");
-                    if (r == true) 
-                        window.location='elenco_coupon.php?action=elimina_tutti_coupon_custom';
-		}
-                function goToDeleteAll()
-		{
-                    var r = confirm("Sei sicuro di voler eliminare TUTTI i coupon inseriti?");
-                    if (r == true) 
-			window.location='elenco_coupon.php?action=elimina_tutti_coupon';
-                }
-                
-                function salvaSuFileCLICouponCustom()
-                {
-                    var retContent = [];
-                    var text = '';
-                    
-                    $("#tbElencoCouponCustom tbody td:nth-child(5)").each(function (idx, elem)
-                    {
-                        var elemText = [];
-                        elemText.push($(elem).text());
-                        //elemText=RemoveCountryWoutRef(elemText);
-                        //retContent.push(`${elemText.join('\r\n')}`);
-                        retContent.push(RemoveCountryWoutRef(elemText));
-                    });
-                    text = retContent.join('\r\n');
-                    // Generate download of hello.txt file with some content
-                    var filename = "CliCustom.txt";
-    
-                    download(filename, text);
-                }
-	</script>
+    <script>
+  
+
+        function goToDeleteStandard()
+        {
+            var r = confirm("Sei sicuro di voler eliminare TUTTI i coupon STANDARD?");
+            if (r == true) 
+                window.location='elenco_coupon.php?action=elimina_tutti_coupon_standard';
+        }
+        function goToDeleteCustom()
+        {
+            var r = confirm("Sei sicuro di voler eliminare TUTTI i coupon CUSTOM?");
+            if (r == true) 
+                window.location='elenco_coupon.php?action=elimina_tutti_coupon_custom';
+        }
+        function goToDeleteAll()
+        {
+            var r = confirm("Sei sicuro di voler eliminare TUTTI i coupon inseriti?");
+            if (r == true) 
+                window.location='elenco_coupon.php?action=elimina_tutti_coupon';
+        }
+        
+        function countVisibleRows(){
+            let rowCount = $('#tbElencoCouponCustom tr:visible').length - 1;
+        }
+
+        function salvaSuFileCLICouponCustom()
+        {
+            var retContent = [];
+            var text = '';
+
+            $("#tbElencoCouponCustom tbody td:nth-child(4").each(function (idx, elem)
+            {
+                var elemText = [];
+                elemText.push($(elem).text());
+                //elemText=RemoveCountryWoutRef(elemText);
+                //retContent.push(`${elemText.join('\r\n')}`);
+                retContent.push(RemoveCountryWoutRef(elemText));
+            });
+            text = retContent.join('\r\n');
+            // Generate download of hello.txt file with some content
+            var filename = "CliCustom.txt";
+
+            download(filename, text);
+        }
+
+        function salvaSuFileCLICouponCustomSelezionati()
+        {
+            var retContent = [];
+            var text = '';
+
+            $("#tbElencoCouponCustom tbody td:nth-child(4):visible").each(function (idx, elem)
+            {
+                var elemText = [];
+                elemText.push($(elem).text());
+                //elemText=RemoveCountryWoutRef(elemText);
+                //retContent.push(`${elemText.join('\r\n')}`);
+                retContent.push(RemoveCountryWoutRef(elemText));
+            });
+            text = retContent.join('\r\n');
+            // Generate download of hello.txt file with some content
+            var filename = "CliCustom.txt";
+
+            download(filename, text);
+        }
+
+    </script>
 </body>
 </html>
