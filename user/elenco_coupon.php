@@ -140,6 +140,8 @@
 			else if (coupon.Coupon_type=="4")
 				document.getElementById('rdb_omaggio_secondi_percentuale').checked=true;
 			document.getElementById('nbenefit_mc').value = coupon.Coupon_value;
+                        
+                        document.getElementById('Url_limit_mc').value=coupon.Url_limit;
 		}	
 
 		function moveSelectToValue(selectname,textToFind){
@@ -210,6 +212,7 @@
                         if(document.getElementById("chkUnlimited").checked)
                             unlimited = 1;
                         myurl +="&unlimited="	+	unlimited;
+                        myurl+="&url_limit="+document.getElementById('Url_limit_mc').value;	
 
 			//Devo richiamare la pagina con paremtro url per fare APIfetch
 			// AJAX code to submit form.
@@ -473,6 +476,10 @@
                             <input id="rdb_sconto_percentuale_mc" type="radio" name="benefit_mc" value="sconto_percentuale" onclick="sconto_percentuale_selected(this);">Sconto %
                             <input type="text" id="nbenefit_mc" name="nbenefit_mc" placeholder="Omaggio Secondi" onkeypress="return isNumber(event);" size="5">
                         </div>
+                        <div class="input-group">
+				<label>URL Limit</label>
+                                <input type="text" id="Url_limit_mc" name="Url_limit_mc" maxlength="200">
+			</div>	
                         <div>
                             <input type="button" id="conferma_modifiche_mc" name="conferma_modifiche_mc" value="Conferma Modifiche" onclick="confermaModificheCoupon();">
                             <input type="button" id="annulla_modifiche_mc" name="annulla_modifiche_mc" value="Annulla" onclick="annullaModificheCoupon();">
@@ -532,6 +539,7 @@
 						<th>Start</th>
 						<th>Stop</th>
                                                 <th>Unlimited</th>
+                                                <th>Url_limit</th>
 						<th>Modify</th>
 						<th>Delete</th>
 					</tr>
@@ -556,6 +564,7 @@
 					<td><?php echo $Coupon->Start; ?></td>
 					<td><?php echo $Coupon->Stop; ?></td>
                                         <td><?php echo $Coupon->Unlimited; ?></td>
+                                        <td><?php echo $Coupon->Url_limit; ?></td>
 					<td>
 						<button type="button" onclick='switchNewCouponToModify(<?php echo json_encode($Coupon); ?>);'>
 								MODIFY</button>
@@ -589,6 +598,7 @@
 						<th>Start</th>
 						<th>Stop</th>
                                                 <th>Unlimited</th>
+                                                <th>Url_limit</th>
 						<th>Modify</th>
 						<th>Delete</th>
 						<th style="display: none">Coupon_ID</th>
@@ -612,12 +622,17 @@
 					<td><?php echo $Coupon->Start; ?></td>
 					<td><?php echo $Coupon->Stop; ?></td>
                                         <td><?php echo $Coupon->Unlimited ? 'false' : 'true';?></td>                                        
+                                        <td><?php echo $Coupon->Url_limit; ?></td>
 					<td style="display: none"><?php echo $Coupon->Coupon_ID; ?></td>
 					<td>
 						<button type="button" onclick='switchNewCouponToModify(<?php echo json_encode($Coupon); ?>);'>
 								MODIFY</button>
 					</td>
-					<td><button  type="button" onclick="window.location='elenco_coupon.php?action=delete&id=<?php echo $Coupon->Coupon_ID;?>&merchant_code=<?php echo $Coupon->Merchant_code;?>&phone_service=<?php echo $Coupon->Phone_service;?>';" >DELETE</button></td>
+					<td>
+                                            <button  type="button" onclick="window.location='elenco_coupon.php?action=delete&id=\n\
+                                                <?php echo $Coupon->Coupon_ID;?>&merchant_code=<?php echo $Coupon->Merchant_code;?>&phone_service=<?php echo $Coupon->Phone_service;?>';" >DELETE
+                                            </button>
+                                        </td>
 					</tr>
 					<?php 			
                                             $countCustom++;
